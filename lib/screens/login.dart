@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'ui.dart';
+import '../ui.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
         // ScrollView allows for UI to adjust if textfield is under keyboard
         body: SingleChildScrollView(
@@ -22,7 +23,10 @@ class LoginScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                child: RoundedButton("Login", context),
+                child: RoundedButton(
+                  "Login", 
+                  context,
+                  () => Navigator.pushNamed(context, "/events")),
               ),
             ],
           ))),

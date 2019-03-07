@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
+import 'screens/login.dart';
 import 'dashboard.dart';
+import 'screens/events.dart';
 
 // Main runloop
 void main() => runApp(MyApp());
@@ -12,7 +13,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Tealium Events App",
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      initialRoute: "/",
+      routes: {
+        "/" : (context) => LoginScreen(),
+        "/events" : (context) => EventsScreen(),
+      },
+      // home: LoginScreen(),
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),

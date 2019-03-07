@@ -43,7 +43,7 @@ RoundedPasswordField(String hintText) {
   );
 }
 
-RoundedButton(String title, BuildContext context) {
+RoundedButton(String title, BuildContext context, VoidCallback onPressed) {
   return Material(
     elevation: 5.0,
     borderRadius: BorderRadius.circular(30.0),
@@ -52,7 +52,7 @@ RoundedButton(String title, BuildContext context) {
     child: MaterialButton(
       minWidth: MediaQuery.of(context).size.width,
       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-      onPressed: () {},
+      onPressed: () { onPressed(); },
       child: Text(title,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0)
