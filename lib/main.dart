@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/login.dart';
-import 'dashboard.dart';
 import 'screens/events.dart';
+import 'screens/contacts.dart';
 
 // Main runloop
 void main() => runApp(MyApp());
@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: {
-        "/" : (context) => LoginScreen(),
-        "/events" : (context) => EventsScreen(),
+        "/": (context) => LoginScreen(),
+        "/events": (context) => EventsScreen(),
+        "/contacts": (context) => ContactsScreen(),
       },
       // home: LoginScreen(),
       theme: new ThemeData(

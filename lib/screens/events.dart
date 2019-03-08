@@ -7,6 +7,10 @@ class EventsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Events"),
       ),
+      body: Center(
+        child: RaisedButton(
+            onPressed: () => {Navigator.pushNamed(context, "/contacts")}),
+      ),
     );
   }
 }
