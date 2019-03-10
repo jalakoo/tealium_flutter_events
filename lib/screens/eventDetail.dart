@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class EventsScreen extends StatelessWidget {
+class EventDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Events"),
+        title: Text("Event Detail"),
       ),
       body: Center(
         child: RaisedButton(
           onPressed: () {
-            Navigator.pushNamed(context, "/eventDetail");
+            Navigator.pushNamed(context, "/contacts");
           },
         ),
       ),
