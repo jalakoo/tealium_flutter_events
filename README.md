@@ -54,3 +54,9 @@ Set Scaffold's property `resizeToAvoidBottomInset` to `false` (which will allow 
 
 ### Streams
 import `dart:async` to use streams
+
+
+## MODELS
+
+### Autogenerate from a JSON spec
+This [web app](https://javiercbk.github.io/json_to_dart/)
