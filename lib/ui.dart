@@ -9,6 +9,15 @@ LoginPadding(BuildContext context) {
   );
 }
 
+ContactDetailsPadding(BuildContext context) {
+  return EdgeInsets.only(
+    left: 40,
+    top: MediaQuery.of(context).size.height * 0.05,
+    right: 40,
+    bottom: 20,
+  );
+}
+
 ImageContainer(String assetPath) {
   return Container(
       width: 100.0,
@@ -26,6 +35,33 @@ RoundedTextField(String hintText) {
         fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.black),
     decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        hintText: hintText,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+  );
+}
+
+RoundedContactTextArea(String hintText) {
+  return TextField(
+    //textAlign: TextAlign.center,
+    keyboardType: TextInputType.multiline,
+    maxLines: 10,
+    obscureText: false,
+    style: TextStyle(
+        fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.black, height: .65),
+    decoration: InputDecoration(
+        contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
+        hintText: hintText,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+  );
+}
+
+RoundedContactTextField(String hintText) {
+  return TextField(
+    obscureText: false,
+    style: TextStyle(
+        fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.black),
+    decoration: InputDecoration(
+        contentPadding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
         hintText: hintText,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
   );
@@ -56,6 +92,25 @@ RoundedButton(String title, BuildContext context, VoidCallback onPressed) {
       child: Text(title,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0)
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
+    ),
+  );
+}
+
+RoundedBizCardButton(String title, BuildContext context, VoidCallback onPressed) {
+  return Material(
+    elevation: 5.0,
+    borderRadius: BorderRadius.circular(30.0),
+    color: Color(0xff01A0C7),
+    // color: Colors.black,
+    child: MaterialButton(
+      minWidth: 12.0,
+      height: .4,
+      padding: EdgeInsets.fromLTRB(15.0, 8.0, 15.0, 8.0),
+      onPressed: () { onPressed(); },
+      child: Text(title,
+          textAlign: TextAlign.center,
+          style: TextStyle(fontFamily: 'Montserrat', fontSize: 14.0)
               .copyWith(color: Colors.white, fontWeight: FontWeight.bold)),
     ),
   );

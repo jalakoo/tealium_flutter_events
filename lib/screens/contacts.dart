@@ -1,3 +1,4 @@
+import 'package:events/screens/contactdetail.dart';
 import 'package:flutter/material.dart';
 import '../models/contact.dart';
 
@@ -41,7 +42,11 @@ class ContactsScreenState extends State {
               children: <Widget>[
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetailScreen()),);
+                    },
+                  child: Text(  
                     this.contacts[position].firstName +
                         " " +
                         this.contacts[position].lastName,
@@ -49,6 +54,7 @@ class ContactsScreenState extends State {
                     style: TextStyle(
                       color: Colors.blue,
                     ),
+                  ),
                   ),
                 ),
                 Text(
