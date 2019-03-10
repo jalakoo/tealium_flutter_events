@@ -17,6 +17,9 @@ class ContactsScreenState extends State {
       getData();
     }
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Contacts"),
+      ),
       body: contactListItems(),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
