@@ -1,10 +1,11 @@
-import 'managerMode.dart';
 import 'package:faker/faker.dart';
 
+enum ItemManagerMode { file, random, prod }
+
 // This class provides a list of events from a variety of different sources,
-// dependent on the ManagerMode setting
+// dependent on the ItemManagerMode setting
 class ItemsManager<T> {
-  ManagerMode mode = ManagerMode.random;
+  ItemManagerMode mode = ItemManagerMode.random;
   List<T> _items;
 
   int count() {
@@ -22,16 +23,16 @@ class ItemsManager<T> {
     return _items;
   }
 
-  List<T> _new(ManagerMode currentMode) {
+  List<T> _new(ItemManagerMode currentMode) {
     switch (currentMode) {
-      case ManagerMode.file:
+      case ItemManagerMode.file:
 
         // Remove break to allow fallthrough
         break;
-      case ManagerMode.random:
+      case ItemManagerMode.random:
         return _getRandomly();
         break;
-      case ManagerMode.prod:
+      case ItemManagerMode.prod:
         break;
       default:
     }

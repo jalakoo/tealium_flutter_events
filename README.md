@@ -60,3 +60,6 @@ import `dart:async` to use streams
 
 ### Autogenerate from a JSON spec
 This [web app](https://javiercbk.github.io/json_to_dart/)
+
+## DEPENDECIES
+[Faker](https://github.com/drager/faker) for randomized data for dev and testing.

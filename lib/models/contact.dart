@@ -1,49 +1,75 @@
+// JSON representation
+// {
+// 	"id": "_autogen_id_",
+// 	"first_name": "John",
+// 	"last_name": "Smith",
+// 	"email": "john.smith@tealium.com",
+// 	"company": "Tealium",
+// 	"phone_numbers": {"mobile":"888-123-4567"},
+// 	"notes": "",
+// 	"utc_ts_updated": 1552229778
+// }
 class Contact {
+  String id;
+  String firstName;
+  String lastName;
+  String email;
+  String company;
+  PhoneNumbers phoneNumbers;
+  String notes;
+  int utcTsUpdated;
 
-  String _firstName;
-  String _lastName;
-  String _email;
-  String _company;
-  String _phoneNumber;
-  String _notes;
+  Contact(
+      {this.id,
+      this.firstName,
+      this.lastName,
+      this.email,
+      this.company,
+      this.phoneNumbers,
+      this.notes,
+      this.utcTsUpdated});
 
-  Contact(this._firstName, this._lastName, this._email, this._company, this._phoneNumber, [this._notes]);
-
-  String get notes => _notes;
-
-  set notes(String value) {
-    _notes = value;
+  Contact.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    firstName = json['first_name'];
+    lastName = json['last_name'];
+    email = json['email'];
+    company = json['company'];
+    phoneNumbers = json['phone_numbers'] != null
+        ? new PhoneNumbers.fromJson(json['phone_numbers'])
+        : null;
+    notes = json['notes'];
+    utcTsUpdated = json['utc_ts_updated'];
   }
 
-  String get phoneNumber => _phoneNumber;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['first_name'] = this.firstName;
+    data['last_name'] = this.lastName;
+    data['email'] = this.email;
+    data['company'] = this.company;
+    if (this.phoneNumbers != null) {
+      data['phone_numbers'] = this.phoneNumbers.toJson();
+    }
+    data['notes'] = this.notes;
+    data['utc_ts_updated'] = this.utcTsUpdated;
+    return data;
+  }
+}
 
-  set phoneNumber(String value) {
-    _phoneNumber = value;
+class PhoneNumbers {
+  String mobile;
+
+  PhoneNumbers({this.mobile});
+
+  PhoneNumbers.fromJson(Map<String, dynamic> json) {
+    mobile = json['mobile'];
   }
 
-  String get company => _company;
-
-  set company(String value) {
-    _company = value;
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['mobile'] = this.mobile;
+    return data;
   }
-
-  String get email => _email;
-
-  set email(String value) {
-    _email = value;
-  }
-
-  String get lastName => _lastName;
-
-  set lastName(String value) {
-    _lastName = value;
-  }
-
-  String get firstName => _firstName;
-
-  set firstName(String value) {
-    _firstName = value;
-  }
-
-
 }

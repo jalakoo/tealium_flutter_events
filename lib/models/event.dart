@@ -1,3 +1,16 @@
+// JSON representation
+// {
+// 	"id": "_autogen_id_",
+// 	"name": "Digital Velocity SD 2019",
+// 	"lat": 32.906640,
+// 	"lon": -117.236840,
+// 	"address": "11095 Torreyana Rd., San Diego, CA 92121",
+// 	"utc_ts_start": 1554109200,
+// 	"utc_ts_end": 1554224400,
+// 	"url": "https;//www.digitalvelocityconference.com",
+// 	"utc_ts_updated": 1552229778
+// }
+
 class Event {
   String id;
   String name;

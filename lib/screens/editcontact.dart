@@ -50,7 +50,7 @@ class EditContactScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField(contact.phoneNumber, true),
+                child: RoundedContactTextField(contact.phoneNumbers.mobile, true),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),

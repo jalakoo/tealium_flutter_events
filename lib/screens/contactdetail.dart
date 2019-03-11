@@ -46,7 +46,7 @@ class ContactDetailScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField(contact.phoneNumber, false),
+                child: RoundedContactTextField(contact.phoneNumbers.mobile, false),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),

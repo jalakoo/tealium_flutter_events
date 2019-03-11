@@ -1,6 +1,5 @@
 import 'itemsManager.dart';
 import '../models/event.dart';
-import 'managerMode.dart';
 import 'package:faker/faker.dart';
 
 class EventsManager extends ItemsManager {
@@ -9,6 +8,7 @@ class EventsManager extends ItemsManager {
 randomItem() {
     Event result = Event();
     Faker faker = Faker();
+    
     result.name = faker.conference.name();
 
     // TODO: Event details
