@@ -1,12 +1,13 @@
 import 'package:events/screens/editcontact.dart';
 import 'package:flutter/material.dart';
-//import '../models/contact.dart';
+import '../models/contact.dart';
 import '../ui.dart';
 
 class ContactDetailScreen extends StatelessWidget {
+  final Contact contact;
+  const ContactDetailScreen({Key key, this.contact}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff01A0C7),
@@ -15,7 +16,7 @@ class ContactDetailScreen extends StatelessWidget {
           IconButton(
             icon: new Icon(Icons.edit),
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EditContactScreen()),);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => EditContactScreen(contact: this.contact,)),);
             })
         ],
         title: const Text("CDAO | Contact"),
@@ -30,31 +31,26 @@ class ContactDetailScreen extends StatelessWidget {
             children: <Widget>[
               ImageContainer("assets/user.png"),
               Padding(padding: EdgeInsets.all(10.0)),
-              RoundedContactTextField("First Name"),
+              RoundedContactTextField(contact.firstName, false),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Last Name"),
+                child: RoundedContactTextField(contact.lastName, false),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Email"),
-                // Need this for edit contacts, keeping for reference
-                // child: RoundedButton(
-                //   "Login", 
-                //   context,
-                //   () => Navigator.pushNamed(context, "/events")),
+                child: RoundedContactTextField(contact.email, false), 
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Company"),
+                child: RoundedContactTextField(contact.company, false),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Phone Number"),
+                child: RoundedContactTextField(contact.phoneNumber, false),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextArea("Notes"),
+                child: RoundedContactTextArea(contact.notes, false),
               ),
             ],
           ))),

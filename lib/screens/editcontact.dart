@@ -1,11 +1,16 @@
+import 'package:events/screens/contactdetail.dart';
 import 'package:flutter/material.dart';
-//import '../models/contact.dart';
+import '../models/contact.dart';
 import '../ui.dart';
 
+
+
+
 class EditContactScreen extends StatelessWidget {
+  final Contact contact;
+  const EditContactScreen({Key key, this.contact}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff01A0C7),
@@ -14,7 +19,7 @@ class EditContactScreen extends StatelessWidget {
           FlatButton(
             textColor: Colors.white,
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context, MaterialPageRoute(builder: (context) => ContactDetailScreen(contact: this.contact,)),);
             },
             child: Text("Save"),)
         ],
@@ -30,32 +35,33 @@ class EditContactScreen extends StatelessWidget {
             children: <Widget>[
               ImageContainer("assets/user.png"),
               Padding(padding: EdgeInsets.all(10.0)),
-              RoundedContactTextField("First Name"),
+              RoundedContactTextField(contact.firstName, true),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Last Name"),
+                child: RoundedContactTextField(contact.lastName, true),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Email"),
+                child: RoundedContactTextField(contact.email, true),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Company"),
+                child: RoundedContactTextField(contact.company, true),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextField("Phone Number"),
+                child: RoundedContactTextField(contact.phoneNumber, true),
               ),
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
-                child: RoundedContactTextArea("Notes"),
+                child: RoundedContactTextArea(contact.notes, true),
               ),
               Padding(padding: EdgeInsets.fromLTRB(0, 12, 0, 0),
                 child: RoundedBizCardButton(
                   "Scan Biz Card", 
                   context,
-                  () => Navigator.pushNamed(context, "/events")),)
+                  () => Navigator.pushNamed(context, "/events")), // Go to Biz Card Scanner Screen
+              )
             ],
           ))),
     ));

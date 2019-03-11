@@ -40,12 +40,13 @@ RoundedTextField(String hintText) {
   );
 }
 
-RoundedContactTextArea(String hintText) {
+RoundedContactTextArea(String hintText, bool enabled) {
   return TextField(
     //textAlign: TextAlign.center,
     keyboardType: TextInputType.multiline,
     maxLines: 10,
     obscureText: false,
+    enabled: enabled,
     style: TextStyle(
         fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.black, height: .65),
     decoration: InputDecoration(
@@ -55,9 +56,10 @@ RoundedContactTextArea(String hintText) {
   );
 }
 
-RoundedContactTextField(String hintText) {
+RoundedContactTextField(String hintText, bool enabled) {
   return TextField(
     obscureText: false,
+    enabled: enabled,
     style: TextStyle(
         fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.black),
     decoration: InputDecoration(

@@ -44,7 +44,7 @@ class ContactsScreenState extends State {
                   alignment: Alignment.centerLeft,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetailScreen()),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetailScreen(contact: this.contacts[position],)),);
                     },
                   child: Text(  
                     this.contacts[position].firstName +
