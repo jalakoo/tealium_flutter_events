@@ -16,11 +16,6 @@ class EventsScreenState extends State {
         title: Text("Events"),
       ),
       body: eventsListItems(),
-      // body: Center(
-      //   child: RaisedButton(onPressed: () {
-      //     Navigator.pushNamed(context, "/eventDetails");
-      //   }),
-      // ),
     );
   }
 
@@ -49,7 +44,7 @@ class EventsScreenState extends State {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              this.events.eventForIndex(index).name,
+              this.events.itemForIndex(index).name,
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: Colors.blue,
@@ -60,33 +55,4 @@ class EventsScreenState extends State {
       ),
     ));
   }
-  // ListView eventsListItems() {
-  //   return ListView.builder(
-  //       itemCount: this.events.count(),
-  //       itemBuilder: (BuildContext context, int position) {
-  //         return Card(
-  //             child: Padding(
-  //           padding: const EdgeInsets.only(
-  //             top: 8.0,
-  //             bottom: 8.0,
-  //             left: 64.0,
-  //           ),
-  //           child: Row(
-  //             children: <Widget>[
-  //               Align(
-  //                 alignment: Alignment.centerLeft,
-  //                 child: Text(
-  //                   this.events.eventForIndex(position).name,
-  //                   textAlign: TextAlign.right,
-  //                   style: TextStyle(
-  //                     color: Colors.blue,
-  //                   ),
-  //                 ),
-  //               ),
-  //             ],
-  //           ),
-  //         ));
-  //       });
-  // }
-
 }
