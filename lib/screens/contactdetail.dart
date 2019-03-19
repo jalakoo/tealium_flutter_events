@@ -10,7 +10,7 @@ class ContactDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff01A0C7),
+        //backgroundColor: Color(0xff01A0C7),
         actions: <Widget>[
           // back action
           IconButton(

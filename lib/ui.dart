@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 LoginPadding(BuildContext context) {
@@ -135,3 +136,20 @@ UIDivider() {
     margin: const EdgeInsets.symmetric(vertical: 12.0),
   );
 }
+
+WrappedText(double width, String text) {
+  return Container(
+    width: width,
+    child: Text(text, textAlign: TextAlign.center)
+  );
+}
+
+// LinkTextSpan(TextStyle style, String url, String text) {
+//   return TextSpan(
+//   style: style,
+//   text: text ?? url,
+//   recognizer: TapGestureRecognizer()..onTap = () {
+//     launch(url, forceSafariVC: false);
+//   }
+// }
+  

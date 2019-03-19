@@ -1,3 +1,4 @@
+import 'package:events/screens/eventDetail.dart';
 import 'package:flutter/material.dart';
 import '../managers/eventsManager.dart';
 
@@ -26,7 +27,8 @@ class EventsScreenState extends State {
           return GestureDetector(
               child: EventCard(index),
               onTap: () {
-                Navigator.pushNamed(context, "/eventDetail");
+                //Navigator.pushNamed(context, "/eventDetail");
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailScreen(event: this.events.itemForIndex(index),)),);
               });
         });
   }

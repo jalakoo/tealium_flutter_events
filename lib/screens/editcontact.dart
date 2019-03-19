@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/contact.dart';
 import '../ui.dart';
 
-
-
-
 class EditContactScreen extends StatelessWidget {
   final Contact contact;
   const EditContactScreen({Key key, this.contact}) : super(key: key);
@@ -13,7 +10,7 @@ class EditContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff01A0C7),
+        //backgroundColor: Color(0xff01A0C7),
         actions: <Widget>[
           // save action
           FlatButton(
