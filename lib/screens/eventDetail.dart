@@ -70,54 +70,52 @@ class EventDetailScreen extends StatelessWidget {
     LatLng _location =
         new LatLng(32.709583, -117.1598837); // [stub] lat/lon for now
     _createMarkers(_location);
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          //backgroundColor: Color(0xff01A0C7),
-          actions: <Widget>[
-            // create contact action
-            IconButton(
-                icon: new Icon(Icons.contacts),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/contacts");
-                })
-          ],
-          title: const Text("Event Detail"),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              Padding(padding: EdgeInsets.all(15.0)),
-              // Text(_displayDate(event.utcTsStart,event.utcTsEnd)),
-              Text(_displayDate(1554109200, 1554224400)), // [stub] start/end for now
-              Padding(padding: EdgeInsets.all(15.0)),
-              new Container(
-                height: 200,
-                width: 350,
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: _location,
-                    zoom: 11.0,
-                  ),
-                  markers: _markers,
+    return Scaffold(
+      appBar: AppBar(
+        //backgroundColor: Color(0xff01A0C7),
+        actions: <Widget>[
+          // create contact action
+          IconButton(
+              icon: new Icon(Icons.contacts),
+              onPressed: () {
+                Navigator.pushNamed(context, "/contacts");
+              })
+        ],
+        title: const Text("Event Detail"),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(15.0)),
+            // Text(_displayDate(event.utcTsStart,event.utcTsEnd)),
+            Text(_displayDate(1554109200, 1554224400)), // [stub] start/end for now
+            Padding(padding: EdgeInsets.all(15.0)),
+            new Container(
+              height: 200,
+              width: 350,
+              child: GoogleMap(
+                onMapCreated: _onMapCreated,
+                initialCameraPosition: CameraPosition(
+                  target: _location,
+                  zoom: 11.0,
                 ),
+                markers: _markers,
               ),
-              Padding(padding: EdgeInsets.all(20.0)),
-              // WrappedText(text_width, event.address),
-              WrappedText(text_width,
-                  "11095 Torreyana Rd.\n San Diego, CA 92121"), // [stub] address for now
-              Padding(padding: EdgeInsets.all(15.0)),
-              // Linkify(
-              //   onOpen: _onLinkClick,
-              //   text: event.url,
-              // ),
-              Linkify(
-                onOpen: _onLinkClick,
-                text: "https://www.google.com", // [stub] url for now
-              ),
-            ],
-          ),
+            ),
+            Padding(padding: EdgeInsets.all(20.0)),
+            // WrappedText(text_width, event.address),
+            WrappedText(text_width,
+                "11095 Torreyana Rd.\n San Diego, CA 92121"), // [stub] address for now
+            Padding(padding: EdgeInsets.all(15.0)),
+            // Linkify(
+            //   onOpen: _onLinkClick,
+            //   text: event.url,
+            // ),
+            Linkify(
+              onOpen: _onLinkClick,
+              text: "https://www.google.com", // [stub] url for now
+            ),
+          ],
         ),
       ),
     );

@@ -63,3 +63,9 @@ This [web app](https://javiercbk.github.io/json_to_dart/)
 
 ## DEPENDECIES
 [Faker](https://github.com/drager/faker) for randomized data for dev and testing.
+
+
+## TROUBLESHOOTING
+
+Warning: CocoaPods recommended version 1.5.0 or greater not installed.
+$`sudo gem install cocoapods -n /usr/local/bin`
