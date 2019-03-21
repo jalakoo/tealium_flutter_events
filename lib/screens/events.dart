@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../managers/eventsManager.dart';
+import '../managers/itemsManager.dart'; // This is terrible, need to import to access the mode enum!?
+import '../models/event.dart';
 
 class EventsScreen extends StatefulWidget {
   @override
@@ -8,30 +10,42 @@ class EventsScreen extends StatefulWidget {
 
 class EventsScreenState extends State {
   EventsManager events = EventsManager();
-
+  
   @override
   Widget build(BuildContext context) {
+    events.mode = ItemsManagerMode.dev;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Events"),
       ),
-      body: eventsListItems(),
-    );
+      body: FutureBuilder<List>(
+        future: events.getData(),
+        builder: (context, snapshot) {
+          // print("Events: FutureBuilder: snapshot:");
+          // print(snapshot);
+          if (snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData ? eventsListItems(snapshot.data) : Center( child: new CircularProgressIndicator(),);
+        },
+      )
+      );
   }
 
-  ListView eventsListItems() {
+  ListView eventsListItems(events) {
+    // print("eventsListItems:");
+    // print(events);
     return ListView.builder(
-        itemCount: this.events.count(),
+        itemCount: events.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-              child: EventCard(index),
+              child: EventCard(events, index),
               onTap: () {
                 Navigator.pushNamed(context, "/eventDetail");
               });
         });
   }
 
-  Card EventCard(int index) {
+  Card EventCard(List<Event> events, int index) {
     return Card(
         child: Padding(
       padding: const EdgeInsets.only(
@@ -44,7 +58,8 @@ class EventsScreenState extends State {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              this.events.itemForIndex(index).name,
+              events[index].name,
+              // events.itemForIndex(index).name,
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: Colors.blue,

@@ -1,7 +1,7 @@
 import 'package:events/screens/contactdetail.dart';
 import 'package:flutter/material.dart';
 import '../managers/contactsManager.dart';
-// import '../models/contact.dart';
+import '../models/contact.dart';
 
 class ContactsScreen extends StatefulWidget {
   @override
@@ -15,26 +15,28 @@ class ContactsScreenState extends State {
 
   @override
   Widget build(BuildContext context) {
-    // if (contacts == null) {
-    //   contacts = List<Contact>();
-    //   getData();
-    // }
     return Scaffold(
       appBar: AppBar(
         title: Text("Contacts"),
       ),
-      body: contactListItems(),
+      body: FutureBuilder<List>(
+        future: contacts.getData(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
+          return snapshot.hasData ? contactListItems(snapshot.data) : Center( child: new CircularProgressIndicator(),);
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         tooltip: "Create New Contact",
         child: Icon(Icons.add),
       ),
-    );
+      );
   }
 
-  ListView contactListItems() {
+  ListView contactListItems(List<Contact> contacts) {
     return ListView.builder(
-        itemCount: contacts.count(),
+        itemCount: contacts.length,
         itemBuilder: (BuildContext context, int position) {
           return Card(
               child: Padding(
@@ -49,12 +51,12 @@ class ContactsScreenState extends State {
                   alignment: Alignment.centerLeft,
                   child: FlatButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetailScreen(contact: this.contacts.itemForIndex(position),)),);
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ContactDetailScreen(contact: contacts[position],)),);
                     },
                   child: Text(  
-                    this.contacts.itemForIndex(position).firstName +
+                    contacts[position].firstName +
                         " " +
-                        this.contacts.itemForIndex(position).lastName,
+                        contacts[position].lastName,
                     textAlign: TextAlign.right,
                     style: TextStyle(
                       color: Colors.blue,
@@ -63,7 +65,7 @@ class ContactsScreenState extends State {
                   ),
                 ),
                 Text(
-                  this.contacts.itemForIndex(position).company,
+                  contacts[position].company,
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -71,25 +73,4 @@ class ContactsScreenState extends State {
           ));
         });
   }
-
-  // void getData() {
-  //   List<Contact> contactsList = List<Contact>();
-  //   Contact c1 =
-  //       Contact("John", "Doe", "john.doe@teal.com", "Tealium", "555-123-4578");
-  //   Contact c2 =
-  //       Contact("Tim", "Cook", "tim.cook@teal.com", "Tealium", "555-123-4578");
-  //   Contact c3 =
-  //       Contact("Jet", "Li", "jet.li@teal.com", "Tealium", "555-123-4578");
-  //   Contact c4 = Contact("Craig", "Daniel", "craig.daniel@tealium.com",
-  //       "Tealium", "555-123-4578");
-  //   contactsList.add(c1);
-  //   contactsList.add(c2);
-  //   contactsList.add(c3);
-  //   contactsList.add(c4);
-
-  //   setState(() {
-  //     contacts = contactsList;
-  //     count = contactsList.length;
-  //   });
-  // }
 }

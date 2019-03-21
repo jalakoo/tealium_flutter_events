@@ -1,64 +1,93 @@
 import 'package:faker/faker.dart';
+import 'httpManager.dart';
 
-enum ItemManagerMode { file, random, prod }
+enum ItemsManagerMode { file, random, dev, prod }
 
 // This class provides a list of events from a variety of different sources,
-// dependent on the ItemManagerMode setting
+// dependent on the ItemsManagerMode setting
 class ItemsManager<T> {
-  ItemManagerMode mode = ItemManagerMode.random;
+  ItemsManagerMode mode = ItemsManagerMode.random;
   List<T> _items;
+  HttpManager _httpManager;
 
-  int count() {
-    return items().length;
-  }
+  Future<List<T>> getData() async {
 
-  T itemForIndex(int index) {
-    return items()[index];
-  }
-
-  List<T> items() {
-    if (_items == null || _items.length == 0) {
-      _items = _new(mode);
+    // TODO: Cache timeout
+    if (_items != null){
+      return futureItems(_items);
     }
-    return _items;
-  }
-
-  List<T> _new(ItemManagerMode currentMode) {
-    switch (currentMode) {
-      case ItemManagerMode.file:
-
+    
+    switch (mode) {
+      case ItemsManagerMode.file:
         // Remove break to allow fallthrough
+        // TODO:
+        return futureItems([]);
         break;
-      case ItemManagerMode.random:
-        return _getRandomly();
+      case ItemsManagerMode.random:
+        return getRandomly().then((items){
+          _items = items;
+          return futureItems(items);
+        });
         break;
-      case ItemManagerMode.prod:
+      case ItemsManagerMode.dev:
+        return getFromDev().then((items){
+          _items = items;
+          return futureItems(items);
+        });
+        break;
+      case ItemsManagerMode.prod:
+        // TODO:
+        return futureItems([]);
         break;
       default:
     }
   }
 
-  List<T> _getEventsFromFile(String filename) {
-    // TODO: Extract events from a JSON file
+  Future<List<T>> futureItems(List<T> items) async {
+      return Future.delayed(Duration(milliseconds: 100), (){
+        return items;
+      });
   }
 
-  List<T> _getRandomly() {
-    // Using faker library to populate content
+  // Meant to be overwritten
+  Future<List<T>> getRandomly() async {
 
-    int numberOf = Faker().randomGenerator.integer(10, min: 3);
-    List<T> result = List<T>();
-    for (var i = 0; i < numberOf; i++) {
-      result.add(randomItem());
-    }
-    return result;
   }
 
+  // Meant to be overwritten
   T randomItem() {
-    // Meant to be overridden
     // TODO: T details
   }
 
-  List<T> _getFromProd() {
-    // TODO: Get events from the producction server
+  // Meant to be overwritten
+  Future<List<T>> getFromFile(String filename) async {
+    // TODO: Extract events from a JSON file
   }
+
+  // Meant to be overwritten
+  Future<List<T>> getFromDev() async {
+
+  }
+
+  // Meant to be overwritten
+  Future<List<T>> getFromProd() async {
+
+  }
+
+  // UTILS
+  HttpManager httpManager() {
+    // Spin up an HttpManager instance if not already available
+    if (_httpManager == null){
+      _httpManager =HttpManager();
+    }
+    // Set the httpManager mode to match the itemsManager mode
+    _httpManager.mode =httpMode(this.mode);
+    return _httpManager;
+  }
+
+  HttpManagerMode httpMode(ItemsManagerMode mode) {
+    int modeInt = mode.index;
+    return HttpManagerMode.values[modeInt];
+  }
+  
 }

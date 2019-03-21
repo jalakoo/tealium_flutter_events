@@ -17,10 +17,10 @@ class Event {
   double lat;
   double lon;
   String address;
-  int utcTsStart;
-  int utcTsEnd;
+  int utcStart;
+  int utcEnd;
   String url;
-  int utcTsUpdated;
+  int utcUpdated;
 
   Event(
       {this.id,
@@ -28,10 +28,10 @@ class Event {
       this.lat,
       this.lon,
       this.address,
-      this.utcTsStart,
-      this.utcTsEnd,
+      this.utcStart,
+      this.utcEnd,
       this.url,
-      this.utcTsUpdated});
+      this.utcUpdated});
 
   Event.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -39,10 +39,10 @@ class Event {
     lat = json['lat'];
     lon = json['lon'];
     address = json['address'];
-    utcTsStart = json['utc_ts_start'];
-    utcTsEnd = json['utc_ts_end'];
+    utcStart = json['utc_ts_start'];
+    utcEnd = json['utc_ts_end'];
     url = json['url'];
-    utcTsUpdated = json['utc_ts_updated'];
+    utcUpdated = json['utc_ts_updated'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,10 +52,10 @@ class Event {
     data['lat'] = this.lat;
     data['lon'] = this.lon;
     data['address'] = this.address;
-    data['utc_ts_start'] = this.utcTsStart;
-    data['utc_ts_end'] = this.utcTsEnd;
+    data['utc_ts_start'] = this.utcStart;
+    data['utc_ts_end'] = this.utcEnd;
     data['url'] = this.url;
-    data['utc_ts_updated'] = this.utcTsUpdated;
+    data['utc_ts_updated'] = this.utcUpdated;
     return data;
   }
 }
