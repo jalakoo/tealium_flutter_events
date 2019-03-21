@@ -7,7 +7,7 @@
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Google Maps
-  [GMSServices provideAPIKey:@"AIzaSyAG8d-6mB10zZLpe0K0-JR1bH4akCCB2iY"];
+  [GMSServices provideAPIKey:@"PLACEHOLDER"];
   [GeneratedPluginRegistrant registerWithRegistry:self];
   // Override point for customization after application launch.
   return [super application:application didFinishLaunchingWithOptions:launchOptions];

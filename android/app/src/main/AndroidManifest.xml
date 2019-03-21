@@ -16,9 +16,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="events"
         android:icon="@mipmap/ic_launcher">
-         <!-- Google Maps Test API Key -->
+         <!-- Google Maps API Key -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyAm-UZfK8H6fjV3d74C9XL-e3eMFGHs2QQ"/>
+        android:value="AIzaSyAX1TMik7Buyf1Z9EpK669W2H8oV7tQc54"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
