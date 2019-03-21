@@ -16,6 +16,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="events"
         android:icon="@mipmap/ic_launcher">
+         <!-- Google Maps Test API Key -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyAm-UZfK8H6fjV3d74C9XL-e3eMFGHs2QQ"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -30,9 +33,6 @@
             <meta-data
                 android:name="io.flutter.app.android.SplashScreenUntilFirstFrame"
                 android:value="true" />
-            <!-- Google Maps Test API Key -->
-            <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAm-UZfK8H6fjV3d74C9XL-e3eMFGHs2QQ"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
