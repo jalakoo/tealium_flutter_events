@@ -11,25 +11,28 @@ class EventsScreen extends StatefulWidget {
 
 class EventsScreenState extends State {
   EventsManager events = EventsManager();
-  
+
   @override
   Widget build(BuildContext context) {
     events.mode = ItemsManagerMode.dev;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Events"),
-      ),
-      body: FutureBuilder<List>(
-        future: events.getData(),
-        builder: (context, snapshot) {
-          // print("Events: FutureBuilder: snapshot:");
-          // print(snapshot);
-          if (snapshot.hasError) print(snapshot.error);
-          return snapshot.hasData ? eventsListItems(snapshot.data) : Center( child: new CircularProgressIndicator(),);
-        },
-      )
-      );
+        appBar: AppBar(
+          title: Text("Events"),
+        ),
+        body: FutureBuilder<List>(
+          future: events.getData(),
+          builder: (context, snapshot) {
+            // print("Events: FutureBuilder: snapshot:");
+            // print(snapshot);
+            if (snapshot.hasError) print(snapshot.error);
+            return snapshot.hasData
+                ? eventsListItems(snapshot.data)
+                : Center(
+                    child: new CircularProgressIndicator(),
+                  );
+          },
+        ));
   }
 
   ListView eventsListItems(events) {
@@ -42,7 +45,13 @@ class EventsScreenState extends State {
               child: EventCard(events, index),
               onTap: () {
                 //Navigator.pushNamed(context, "/eventDetail");
-                Navigator.push(context, MaterialPageRoute(builder: (context) => EventDetailScreen(event: this.events.itemForIndex(index),)),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EventDetailScreen(
+                            event: events[index],
+                          )),
+                );
               });
         });
   }
