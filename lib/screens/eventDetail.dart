@@ -51,7 +51,15 @@ class EventDetailScreen extends StatelessWidget {
     if (startDate[2] != endDate[2]) {
       multiYear = " " + startDate[2];
     }
-    return startDate[1] + multiMonth + multiYear + " - " + endDate[1] + " " + endDate[0] + " " + endDate[2];
+    return startDate[1] +
+        multiMonth +
+        multiYear +
+        " - " +
+        endDate[1] +
+        " " +
+        endDate[0] +
+        " " +
+        endDate[2];
   }
 
   List<String> _formattedDate(int timestamp) {
@@ -66,13 +74,10 @@ class EventDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double text_width = MediaQuery.of(context).size.width * 0.5;
-    // LatLng _location = new LatLng(event.lat, event.lon);
-    LatLng _location =
-        new LatLng(32.709583, -117.1598837); // [stub] lat/lon for now
+    LatLng _location = LatLng(event.lat, event.lon);
     _createMarkers(_location);
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: Color(0xff01A0C7),
         actions: <Widget>[
           // create contact action
           IconButton(
@@ -81,14 +86,14 @@ class EventDetailScreen extends StatelessWidget {
                 Navigator.pushNamed(context, "/contacts");
               })
         ],
-        title: const Text("Event Detail"),
+        title: Text(event.name),
+        // title: const Text("Event Detail"),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
             Padding(padding: EdgeInsets.all(15.0)),
-            // Text(_displayDate(event.utcTsStart,event.utcTsEnd)),
-            Text(_displayDate(1554109200, 1554224400)), // [stub] start/end for now
+            Text(_displayDate(event.utcStart, event.utcEnd)),
             Padding(padding: EdgeInsets.all(15.0)),
             new Container(
               height: 200,
@@ -103,9 +108,7 @@ class EventDetailScreen extends StatelessWidget {
               ),
             ),
             Padding(padding: EdgeInsets.all(20.0)),
-            // WrappedText(text_width, event.address),
-            WrappedText(text_width,
-                "11095 Torreyana Rd.\n San Diego, CA 92121"), // [stub] address for now
+            WrappedText(text_width, event.address),
             Padding(padding: EdgeInsets.all(15.0)),
             // Linkify(
             //   onOpen: _onLinkClick,
@@ -113,7 +116,7 @@ class EventDetailScreen extends StatelessWidget {
             // ),
             Linkify(
               onOpen: _onLinkClick,
-              text: "https://www.google.com", // [stub] url for now
+              text: event.url,
             ),
           ],
         ),

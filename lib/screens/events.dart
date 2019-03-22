@@ -14,7 +14,7 @@ class EventsScreenState extends State {
 
   @override
   Widget build(BuildContext context) {
-    events.mode = ItemsManagerMode.dev;
+    // events.mode = ItemsManagerMode.dev;
 
     return Scaffold(
         appBar: AppBar(
@@ -23,8 +23,6 @@ class EventsScreenState extends State {
         body: FutureBuilder<List>(
           future: events.getData(),
           builder: (context, snapshot) {
-            // print("Events: FutureBuilder: snapshot:");
-            // print(snapshot);
             if (snapshot.hasError) print(snapshot.error);
             return snapshot.hasData
                 ? eventsListItems(snapshot.data)
@@ -36,15 +34,12 @@ class EventsScreenState extends State {
   }
 
   ListView eventsListItems(events) {
-    // print("eventsListItems:");
-    // print(events);
     return ListView.builder(
         itemCount: events.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
               child: EventCard(events, index),
               onTap: () {
-                //Navigator.pushNamed(context, "/eventDetail");
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -70,7 +65,6 @@ class EventsScreenState extends State {
             alignment: Alignment.centerLeft,
             child: Text(
               events[index].name,
-              // events.itemForIndex(index).name,
               textAlign: TextAlign.right,
               style: TextStyle(
                 color: Colors.blue,

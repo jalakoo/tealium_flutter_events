@@ -3,17 +3,28 @@ import '../models/event.dart';
 import 'package:faker/faker.dart';
 import 'dart:async' show Future;
 import 'dart:convert';
-class EventsManager extends ItemsManager {
 
+class EventsManager extends ItemsManager {
   @override
   randomItem() {
-      Event result = Event();
-      Faker faker = Faker();
-      result.name = faker.conference.name();
+    Event result = Event();
+    Faker faker = Faker();
+    result.name = faker.conference.name();
 
-      // TODO: Event details
-      return result;
-    }
+    result.lat = 32.715736;
+    result.lon = -117.161087;
+    result.address = faker.address.streetAddress() +
+        ", " +
+        faker.address.city() +
+        ", " +
+        faker.address.zipCode();
+    result.url = faker.internet.httpUrl();
+    result.utcStart =
+        faker.randomGenerator.integer(1553226593, min: 1553226593);
+    int duration = 172800;
+    result.utcEnd = result.utcStart + duration;
+    return result;
+  }
 
   @override
   Future<List<Event>> getRandomly() async {
@@ -25,7 +36,7 @@ class EventsManager extends ItemsManager {
       result.add(randomItem());
     }
     // return futureItems(result)
-    return Future.delayed(Duration(milliseconds: 100), (){
+    return Future.delayed(Duration(milliseconds: 100), () {
       return result;
     });
   }
@@ -40,4 +51,3 @@ class EventsManager extends ItemsManager {
     return result;
   }
 }
-
