@@ -58,4 +58,7 @@ class Event {
     data['utc_ts_updated'] = this.utcUpdated;
     return data;
   }
+
+  // Put formatdate function in here instead of eventDetail.dart?
+
 }
