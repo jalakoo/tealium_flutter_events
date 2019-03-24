@@ -43,7 +43,7 @@ class EventsManager extends ItemsManager {
 
   @override
   Future<List<Event>> getFromDev() async {
-    String url = httpManager().baseUrlFor(httpMode(mode));
+    String url = httpManager().baseUrlFor(mode);
     url += "/events";
     String responseBody = await httpManager().get(url);
     List l = json.decode(responseBody);

@@ -1,41 +1,39 @@
 import 'package:faker/faker.dart';
 import 'httpManager.dart';
-
-enum ItemsManagerMode { file, random, dev, prod }
+import 'sourceDataMode.dart';
 
 // This class provides a list of events from a variety of different sources,
-// dependent on the ItemsManagerMode setting
+// dependent on the SourceDataMode setting
 class ItemsManager<T> {
-  ItemsManagerMode mode = ItemsManagerMode.random;
+  SourceDataMode mode = SourceDataMode.prod;
   List<T> _items;
   HttpManager _httpManager;
 
   Future<List<T>> getData() async {
-
     // TODO: Cache timeout
-    if (_items != null){
+    if (_items != null) {
       return futureItems(_items);
     }
-    
+
     switch (mode) {
-      case ItemsManagerMode.file:
+      case SourceDataMode.file:
         // Remove break to allow fallthrough
         // TODO:
         return futureItems([]);
         break;
-      case ItemsManagerMode.random:
-        return getRandomly().then((items){
+      case SourceDataMode.random:
+        return getRandomly().then((items) {
           _items = items;
           return futureItems(items);
         });
         break;
-      case ItemsManagerMode.dev:
-        return getFromDev().then((items){
+      case SourceDataMode.dev:
+        return getFromDev().then((items) {
           _items = items;
           return futureItems(items);
         });
         break;
-      case ItemsManagerMode.prod:
+      case SourceDataMode.prod:
         // TODO:
         return futureItems([]);
         break;
@@ -44,15 +42,13 @@ class ItemsManager<T> {
   }
 
   Future<List<T>> futureItems(List<T> items) async {
-      return Future.delayed(Duration(milliseconds: 100), (){
-        return items;
-      });
+    return Future.delayed(Duration(milliseconds: 100), () {
+      return items;
+    });
   }
 
   // Meant to be overwritten
-  Future<List<T>> getRandomly() async {
-
-  }
+  Future<List<T>> getRandomly() async {}
 
   // Meant to be overwritten
   T randomItem() {
@@ -65,29 +61,19 @@ class ItemsManager<T> {
   }
 
   // Meant to be overwritten
-  Future<List<T>> getFromDev() async {
-
-  }
+  Future<List<T>> getFromDev() async {}
 
   // Meant to be overwritten
-  Future<List<T>> getFromProd() async {
-
-  }
+  Future<List<T>> getFromProd() async {}
 
   // UTILS
   HttpManager httpManager() {
     // Spin up an HttpManager instance if not already available
-    if (_httpManager == null){
-      _httpManager =HttpManager();
+    if (_httpManager == null) {
+      _httpManager = HttpManager();
     }
     // Set the httpManager mode to match the itemsManager mode
-    _httpManager.mode =httpMode(this.mode);
+    _httpManager.mode = this.mode;
     return _httpManager;
   }
-
-  HttpManagerMode httpMode(ItemsManagerMode mode) {
-    int modeInt = mode.index;
-    return HttpManagerMode.values[modeInt];
-  }
-  
 }
