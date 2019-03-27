@@ -29,8 +29,9 @@ ImageContainer(String assetPath) {
               fit: BoxFit.scaleDown, image: AssetImage(assetPath))));
 }
 
-RoundedTextField(String hintText) {
+RoundedTextField(String hintText, [TextEditingController controller]) {
   return TextField(
+    controller: controller,
     obscureText: false,
     style: TextStyle(
         fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.black),
@@ -49,7 +50,10 @@ RoundedContactTextArea(String hintText, bool enabled) {
     obscureText: false,
     enabled: enabled,
     style: TextStyle(
-        fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.black, height: .65),
+        fontFamily: 'Montserrat',
+        fontSize: 14.0,
+        color: Colors.black,
+        height: .65),
     decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
         hintText: hintText,
@@ -70,8 +74,9 @@ RoundedContactTextField(String hintText, bool enabled) {
   );
 }
 
-RoundedPasswordField(String hintText) {
+RoundedPasswordField(String hintText, [TextEditingController controller]) {
   return TextField(
+    controller: controller,
     obscureText: true,
     style: TextStyle(
         fontFamily: 'Montserrat', fontSize: 20.0, color: Colors.black),
@@ -91,7 +96,9 @@ RoundedButton(String title, BuildContext context, VoidCallback onPressed) {
     child: MaterialButton(
       minWidth: MediaQuery.of(context).size.width,
       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-      onPressed: () { onPressed(); },
+      onPressed: () {
+        onPressed();
+      },
       child: Text(title,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Montserrat', fontSize: 20.0)
@@ -100,7 +107,8 @@ RoundedButton(String title, BuildContext context, VoidCallback onPressed) {
   );
 }
 
-RoundedBizCardButton(String title, BuildContext context, VoidCallback onPressed) {
+RoundedBizCardButton(
+    String title, BuildContext context, VoidCallback onPressed) {
   return Material(
     elevation: 5.0,
     borderRadius: BorderRadius.circular(30.0),
@@ -110,7 +118,9 @@ RoundedBizCardButton(String title, BuildContext context, VoidCallback onPressed)
       minWidth: 12.0,
       height: .4,
       padding: EdgeInsets.fromLTRB(15.0, 8.0, 15.0, 8.0),
-      onPressed: () { onPressed(); },
+      onPressed: () {
+        onPressed();
+      },
       child: Text(title,
           textAlign: TextAlign.center,
           style: TextStyle(fontFamily: 'Montserrat', fontSize: 14.0)
@@ -139,9 +149,7 @@ UIDivider() {
 
 WrappedText(double width, String text) {
   return Container(
-    width: width,
-    child: Text(text, textAlign: TextAlign.center)
-  );
+      width: width, child: Text(text, textAlign: TextAlign.center));
 }
 
 // LinkTextSpan(TextStyle style, String url, String text) {
@@ -152,4 +160,3 @@ WrappedText(double width, String text) {
 //     launch(url, forceSafariVC: false);
 //   }
 // }
-  

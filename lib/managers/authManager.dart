@@ -1,25 +1,31 @@
 import 'dart:async';
 import 'httpManager.dart';
-import '../models/user.dart';
 import 'sourceDataMode.dart';
 import 'package:faker/faker.dart';
+import '../models/user.dart';
+import '../utils/logger.dart';
 
 const String LOCAL_USERS = '...';
 
 class AuthManager {
-  SourceDataMode mode = SourceDataMode.prod;
+  SourceDataMode mode = SourceDataMode.file;
 
 // Returns a user with a token or error if auth failed
   Future<User> getUser(String email, String password) async {
+    log.verbose("authManager: getUser.");
     if (mode == SourceDataMode.dev) {
+      log.verbose("Getting user from dev...");
       return _getUserFromDev(email, password);
     }
     if (mode == SourceDataMode.file) {
+      log.verbose("Getting user from file...");
       return _getUserFromFile(LOCAL_USERS, email, password);
     }
     if (mode == SourceDataMode.random) {
+      log.verbose("Getting user randomly...");
       return _getUserRandomly();
     }
+    log.verbose("Getting user from prod...");
     return _getUserFromProd(email, password);
   }
 

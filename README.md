@@ -69,3 +69,6 @@ This [web app](https://javiercbk.github.io/json_to_dart/)
 
 Warning: CocoaPods recommended version 1.5.0 or greater not installed.
 $`sudo gem install cocoapods -n /usr/local/bin`
+
+A package URI can't be found (after adding spec to pubspec.yaml & running `flutter packages get`).
+- Restart IDE or computer

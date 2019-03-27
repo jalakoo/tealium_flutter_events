@@ -1,20 +1,23 @@
 import 'package:faker/faker.dart';
 import 'httpManager.dart';
 import 'sourceDataMode.dart';
+import '../utils/logger.dart';
 
 // This class provides a list of events from a variety of different sources,
 // dependent on the SourceDataMode setting
 class ItemsManager<T> {
-  SourceDataMode mode = SourceDataMode.prod;
+  SourceDataMode mode = SourceDataMode.random;
   List<T> _items;
   HttpManager _httpManager;
 
   Future<List<T>> getData() async {
     // TODO: Cache timeout
     if (_items != null) {
+      log.verbose("itemsManager: getData: returning cached items");
       return futureItems(_items);
     }
 
+    log.verbose("itemsManager: getData: getting new items");
     switch (mode) {
       case SourceDataMode.file:
         // Remove break to allow fallthrough
@@ -22,6 +25,7 @@ class ItemsManager<T> {
         return futureItems([]);
         break;
       case SourceDataMode.random:
+        log.verbose("itemsManager: getData: attempting to get random data");
         return getRandomly().then((items) {
           _items = items;
           return futureItems(items);
