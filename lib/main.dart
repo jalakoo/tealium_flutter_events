@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'screens/launch.dart';
 import 'screens/loading.dart';
 import 'screens/login.dart';
 import 'screens/events.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           initialRoute: "/",
           routes: {
-            "/": (context) => LoginScreen(),
+            "/": (context) => LaunchController(),
             "/events": (context) => EventsScreen(),
             "/eventDetail": (context) => EventDetailScreen(),
             "/contacts": (context) => ContactsScreen(),
