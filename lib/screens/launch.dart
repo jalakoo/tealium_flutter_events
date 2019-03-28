@@ -3,9 +3,13 @@ import 'package:scoped_model/scoped_model.dart';
 import 'events.dart';
 import 'loading.dart';
 import 'login.dart';
-import '../ui.dart';
 import '../utils/logger.dart';
 import '../models/appmodel.dart';
+
+// This class handles the initial app load - login - main
+// dashboard (eventsScreen) presentation, separate from the
+// navigation router process as this did not gel well with
+// the scoped model architecture as we currently understand it.
 
 class LaunchController extends StatefulWidget {
   @override
@@ -36,46 +40,12 @@ class LaunchControllerState extends State<LaunchController> {
         login.emailController = emailController;
         login.passwordController = passwordController;
         return login;
-        // return _login(context);
       } else {
-        log.verbose(
-            "Model found pre-existing user. Displaying mock dashboard...");
+        log.verbose("Model found pre-existing user. Displaying events...");
         EventsScreen events = EventsScreen();
         return events;
       }
     });
-  }
-
-  Widget _login(BuildContext context) {
-    return Scaffold(
-        // ScrollView allows for UI to adjust if textfield is under keyboard
-        body: SingleChildScrollView(
-      // Almost all widgets have a child or children property to nest objects with
-      child: Padding(
-          padding: LoginPadding(context),
-          child: Center(
-              child: Column(
-            children: <Widget>[
-              ImageContainer("assets/tealium_logo_120x200.png"),
-              Padding(padding: EdgeInsets.all(20.0)),
-              RoundedTextField("Email", emailController),
-              Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                child: RoundedPasswordField("Password", passwordController),
-              ),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                  child: ScopedModelDescendant<AppModel>(
-                      builder: (context, child, model) {
-                    return RoundedButton(
-                        "Login",
-                        context,
-                        () => login(model, emailController.text,
-                            passwordController.text));
-                  })),
-            ],
-          ))),
-    ));
   }
 
   @override

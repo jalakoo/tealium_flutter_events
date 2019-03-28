@@ -8,7 +8,7 @@ import '../utils/logger.dart';
 const String LOCAL_USERS = '...';
 
 class AuthManager {
-  SourceDataMode mode = SourceDataMode.file;
+  SourceDataMode mode = SourceDataMode.random;
 
 // Returns a user with a token or error if auth failed
   Future<User> getUser(String email, String password) async {
