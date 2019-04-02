@@ -3,8 +3,9 @@ import '../models/event.dart';
 import 'package:faker/faker.dart';
 import 'dart:async' show Future;
 import 'dart:convert';
+import '../utils/logger.dart';
 
-class EventsManager extends ItemsManager {
+class EventsManager extends ItemsManager<Event> {
   @override
   randomItem() {
     Event result = Event();
@@ -29,7 +30,8 @@ class EventsManager extends ItemsManager {
   @override
   Future<List<Event>> getRandomly() async {
     // Using faker library to populate content
-
+    log.verbose("eventsManager; getRandomly");
+    
     int numberOf = Faker().randomGenerator.integer(10, min: 3);
     List<Event> result = List<Event>();
     for (var i = 0; i < numberOf; i++) {

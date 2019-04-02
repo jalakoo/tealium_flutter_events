@@ -1,7 +1,7 @@
 import 'package:events/screens/eventDetail.dart';
 import 'package:flutter/material.dart';
 import '../managers/eventsManager.dart';
-import '../managers/itemsManager.dart'; // This is terrible, need to import to access the mode enum!?
+import '../managers/sourceDataMode.dart';
 import '../models/event.dart';
 
 class EventsScreen extends StatefulWidget {
@@ -14,7 +14,7 @@ class EventsScreenState extends State {
 
   @override
   Widget build(BuildContext context) {
-    // events.mode = ItemsManagerMode.dev;
+    events.mode = SourceDataMode.random;
 
     return Scaffold(
         appBar: AppBar(
