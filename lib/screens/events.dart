@@ -4,6 +4,9 @@ import '../managers/eventsManager.dart';
 import '../managers/sourceDataMode.dart';
 import '../models/event.dart';
 
+import 'package:scoped_model/scoped_model.dart';
+import '../models/appmodel.dart';
+
 class EventsScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => EventsScreenState();
@@ -20,17 +23,29 @@ class EventsScreenState extends State {
         appBar: AppBar(
           title: Text("Events"),
         ),
-        body: FutureBuilder<List>(
-          future: events.getData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
-            return snapshot.hasData
-                ? eventsListItems(snapshot.data)
-                : Center(
-                    child: new CircularProgressIndicator(),
-                  );
-          },
-        ));
+        body: ScopedModelDescendant<AppModel>(builder: (context, child, model) {
+          return FutureBuilder<List>(
+              future: model.eventsManager.getData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) print(snapshot.error);
+                return snapshot.hasData
+                    ? eventsListItems(snapshot.data)
+                    : Center(
+                        child: new CircularProgressIndicator(),
+                      );
+              });
+        }));
+    // body: FutureBuilder<List>(
+    //   future: events.getData(),
+    //   builder: (context, snapshot) {
+    //     if (snapshot.hasError) print(snapshot.error);
+    //     return snapshot.hasData
+    //         ? eventsListItems(snapshot.data)
+    //         : Center(
+    //             child: new CircularProgressIndicator(),
+    //           );
+    //   },
+    // ));
   }
 
   ListView eventsListItems(events) {

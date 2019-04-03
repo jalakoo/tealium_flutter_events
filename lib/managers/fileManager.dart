@@ -15,7 +15,6 @@ class FileManager {
     try {
       final path = await _localPath;
       final filepath = File('$path/$filename');
-      print('fileManager.dart: _localFile: $filepath');
       return filepath;
     } catch (e) {
       throw e;
