@@ -45,4 +45,13 @@ class FileManager {
   Future<String> readFromBundle(String filename) async {
     return await rootBundle.loadString('assets/$filename');
   }
+
+  Future<FileSystemEntity> delete(String filename) async {
+    try {
+      final file = await _localFile(filename);
+      return file.delete();
+    } catch (e) {
+      throw e;
+    }
+  }
 }

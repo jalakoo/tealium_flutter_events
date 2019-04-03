@@ -142,6 +142,7 @@ class AppModel extends Model {
   void logout() {
     isLoading = false;
     user = null;
+    fileManager.delete(userFilename);
     notifyListeners();
   }
 }

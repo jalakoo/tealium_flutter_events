@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/launchController.dart';
-import 'screens/loadingScreen.dart';
-import 'screens/loginScreen.dart';
+import 'screens/settingsScreen.dart';
 import 'screens/eventsScreen.dart';
 import 'screens/eventDetailScreen.dart';
 import 'screens/contactsScreen.dart';
@@ -32,6 +31,7 @@ class MyApp extends StatelessWidget {
             "/contacts": (context) => ContactsScreen(),
             "/contactdetail": (context) => ContactDetailScreen(),
             "/editcontact": (context) => EditContactScreen(),
+            "/settings": (context) => SettingsScreen(),
           },
           theme: new ThemeData(
             primarySwatch: Colors.blue,

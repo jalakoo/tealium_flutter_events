@@ -37,6 +37,7 @@ class AuthManager {
       throw error;
     }
     User result = User();
+    result.id = "test";
     result.authToken = "abc123";
     result.firstName = "John";
     result.lastName = "Doe";
@@ -52,6 +53,7 @@ class AuthManager {
     User result = User();
     Faker faker = Faker();
     result.authToken = faker.randomGenerator.string(8);
+    result.email = faker.internet.email();
     return Future.delayed(Duration(milliseconds: 100), () {
       return result;
     });
