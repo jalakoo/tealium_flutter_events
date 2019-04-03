@@ -11,7 +11,6 @@ class LoadingScreen extends StatelessWidget {
       child: Padding(
           padding: LoginPadding(context),
           child: Container(
-            color: Colors.red,
             child: Center(
                 child: Column(
               children: <Widget>[
