@@ -33,18 +33,23 @@ class LaunchControllerState extends State<LaunchController> {
       if (model.isLoading) {
         log.verbose("Model is loading user.");
         return LoadingScreen();
-      } else if (!model.isLoading && model.user == null) {
+      }
+      if (!model.hasLoaded && model.user == null) {
+        log.verbose("Model is attempting to load user from memory.");
+        model.load();
+        return LoadingScreen();
+      }
+      if (!model.isLoading && model.user == null) {
         log.verbose("Model has finished checking for user. None found.");
         LoginScreen login = LoginScreen();
         login.model = model;
         login.emailController = emailController;
         login.passwordController = passwordController;
         return login;
-      } else {
-        log.verbose("Model found pre-existing user. Displaying events...");
-        EventsScreen events = EventsScreen();
-        return events;
       }
+      log.verbose("Model found pre-existing user. Displaying events...");
+      EventsScreen events = EventsScreen();
+      return events;
     });
   }
 
