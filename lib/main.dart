@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'screens/launch.dart';
-import 'screens/loading.dart';
-import 'screens/login.dart';
-import 'screens/events.dart';
-import 'screens/eventDetail.dart';
-import 'screens/contacts.dart';
-import 'screens/contactdetail.dart';
-import 'screens/editcontact.dart';
+import 'screens/launchController.dart';
+import 'screens/loadingScreen.dart';
+import 'screens/loginScreen.dart';
+import 'screens/eventsScreen.dart';
+import 'screens/eventDetailScreen.dart';
+import 'screens/contactsScreen.dart';
+import 'screens/contactDetailScreen.dart';
+import 'screens/editContactScreen.dart';
 import 'models/appmodel.dart';
 import 'package:scoped_model/scoped_model.dart';
 
