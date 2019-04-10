@@ -127,8 +127,6 @@ class AppModel extends Model {
           "appMode: login: User found for ${email}: ${verifiedUser.toString()}");
       saveUser(verifiedUser);
       this.user = verifiedUser;
-      // FileManager fm = FileManager();
-      // fm.write(json.encode(user), userFilename);
       isLoading = false;
       notifyListeners();
     }).catchError((error) {
