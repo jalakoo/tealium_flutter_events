@@ -10,7 +10,7 @@ const String PROD_URL = "";
 
 class HttpManager {
   @required
-  SourceDataMode mode = SourceDataMode.dev;
+  SourceDataMode mode = SourceDataMode.prod;
 
   String baseUrlFor(SourceDataMode mode) {
     if (mode == SourceDataMode.dev) {

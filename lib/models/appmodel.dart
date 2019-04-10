@@ -6,6 +6,7 @@ import '../managers/fileManager.dart';
 import '../managers/eventsManager.dart';
 import '../managers/contactsManager.dart';
 import '../managers/sourceDataMode.dart';
+import '../managers/httpManager.dart';
 import '../models/config.dart';
 import 'dart:convert';
 
@@ -19,6 +20,7 @@ class AppModel extends Model {
   final EventsManager eventsManager = EventsManager();
   final ContactsManager contactsManager = ContactsManager();
   final FileManager fileManager = FileManager();
+  final HttpManager httpManager = HttpManager();
   Config config;
 
   void load() async {
@@ -63,9 +65,11 @@ class AppModel extends Model {
     if (config == null) {
       log.verbose(
           "No config object loaded - running managers in default mode 'prod'.");
+      // These actually should be already preset by the managers themselves
       authManager.mode = SourceDataMode.prod;
       eventsManager.mode = SourceDataMode.prod;
       contactsManager.mode = SourceDataMode.prod;
+      httpManager.mode = SourceDataMode.prod;
       return;
     }
     if (config.authMode != null) {
@@ -83,6 +87,12 @@ class AppModel extends Model {
           "appModel: updateManagersTo: contactsManager to mode: ${stringFromSourceDataMode(config.contactsMode)}");
       contactsManager.mode = config.contactsMode;
     }
+    if (config.httpMode != null) {
+      log.verbose(
+          "appModel: updateManagersTo: httpManager to mode: ${stringFromSourceDataMode(config.httpMode)}");
+      httpManager.mode = config.httpMode;
+    }
+
   }
 
   void loadUser() async {
@@ -111,7 +121,7 @@ class AppModel extends Model {
 
   void login(String email, String password) {
     isLoading = true;
-    AuthManager auth = AuthManager();
+    AuthManager auth = authManager;
     auth.getUser(email, password).then((verifiedUser) {
       log.verbose(
           "appMode: login: User found for ${email}: ${verifiedUser.toString()}");
@@ -141,6 +151,7 @@ class AppModel extends Model {
 
   void logout() {
     isLoading = false;
+    hasLoaded = false;
     user = null;
     fileManager.delete(userFilename);
     notifyListeners();

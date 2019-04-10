@@ -6,7 +6,7 @@ import '../utils/logger.dart';
 // This class provides a list of events from a variety of different sources,
 // dependent on the SourceDataMode setting
 class ItemsManager<T> {
-  SourceDataMode mode = SourceDataMode.random;
+  SourceDataMode mode = SourceDataMode.prod;
   List<T> _items;
   HttpManager _httpManager;
 
