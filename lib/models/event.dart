@@ -14,6 +14,7 @@
 class Event {
   String id;
   String name;
+  String pardotUrl;
   double lat;
   double lon;
   String address;
@@ -25,6 +26,7 @@ class Event {
   Event(
       {this.id,
       this.name,
+      this.pardotUrl,
       this.lat,
       this.lon,
       this.address,
@@ -36,6 +38,7 @@ class Event {
   Event.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    pardotUrl = json['pardot_url'];
     lat = json['lat'];
     lon = json['lon'];
     address = json['address'];
@@ -49,6 +52,7 @@ class Event {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
+    data['pardot_url'] = this.pardotUrl;
     data['lat'] = this.lat;
     data['lon'] = this.lon;
     data['address'] = this.address;

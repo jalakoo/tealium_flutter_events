@@ -24,6 +24,10 @@ Search under `Dart` and `Flutter` via package manager to bring up the most popul
 - Add to pubspec.yaml
 - Save... should prompt $`flutter package get` automatically
 
+### Running on devices
+List devices: `flutter devices`
+Run on a specific device: `flutter run -d <device_id>`
+
 ### Running Simulator
 From any .dart file :`F5`
 From terminal to start iOS simulator: $`open -a Simulator.app`
