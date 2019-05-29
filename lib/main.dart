@@ -1,8 +1,9 @@
+import 'package:events/screens/webViewScreen.dart';
 import 'package:flutter/material.dart';
 import 'screens/launchController.dart';
 import 'screens/settingsScreen.dart';
 import 'screens/eventsScreen.dart';
-import 'screens/eventDetailScreen.dart';
+import 'screens/webViewScreen.dart';
 import 'screens/contactsScreen.dart';
 import 'screens/contactDetailScreen.dart';
 import 'screens/editContactScreen.dart';
@@ -27,11 +28,11 @@ class MyApp extends StatelessWidget {
           routes: {
             "/": (context) => LaunchController(),
             "/events": (context) => EventsScreen(),
-            "/eventDetail": (context) => EventDetailScreen(),
             "/contacts": (context) => ContactsScreen(),
             "/contactdetail": (context) => ContactDetailScreen(),
             "/editcontact": (context) => EditContactScreen(),
             "/settings": (context) => SettingsScreen(),
+            "/webview": (context) => WebviewScreen()
           },
           theme: new ThemeData(
             primarySwatch: Colors.blue,

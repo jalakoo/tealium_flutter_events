@@ -12,54 +12,55 @@
 // }
 
 class Event {
-  String id;
+  // String id;
   String name;
   String pardotUrl;
-  double lat;
-  double lon;
-  String address;
-  int utcStart;
-  int utcEnd;
-  String url;
-  int utcUpdated;
+  // double lat;
+  // double lon;
+  // String address;
+  // int utcStart;
+  // int utcEnd;
+  // String url;
+  // int utcUpdated;
 
-  Event(
-      {this.id,
-      this.name,
-      this.pardotUrl,
-      this.lat,
-      this.lon,
-      this.address,
-      this.utcStart,
-      this.utcEnd,
-      this.url,
-      this.utcUpdated});
+  Event({
+    // this.id,
+    this.name,
+    this.pardotUrl,
+    // this.lat,
+    // this.lon,
+    // this.address,
+    // this.utcStart,
+    // this.utcEnd,
+    // this.url,
+    // this.utcUpdated
+  });
 
   Event.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    // id = json['id'];
     name = json['name'];
     pardotUrl = json['pardot_url'];
-    lat = json['lat'];
-    lon = json['lon'];
-    address = json['address'];
-    utcStart = json['utc_ts_start'];
-    utcEnd = json['utc_ts_end'];
-    url = json['url'];
-    utcUpdated = json['utc_ts_updated'];
+    // lat = json['lat'];
+    // lon = json['lon'];
+    // address = json['address'];
+    // utcStart = json['utc_ts_start'];
+    // utcEnd = json['utc_ts_end'];
+    // url = json['url'];
+    // utcUpdated = json['utc_ts_updated'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    // data['id'] = this.id;
     data['name'] = this.name;
     data['pardot_url'] = this.pardotUrl;
-    data['lat'] = this.lat;
-    data['lon'] = this.lon;
-    data['address'] = this.address;
-    data['utc_ts_start'] = this.utcStart;
-    data['utc_ts_end'] = this.utcEnd;
-    data['url'] = this.url;
-    data['utc_ts_updated'] = this.utcUpdated;
+    // data['lat'] = this.lat;
+    // data['lon'] = this.lon;
+    // data['address'] = this.address;
+    // data['utc_ts_start'] = this.utcStart;
+    // data['utc_ts_end'] = this.utcEnd;
+    // data['url'] = this.url;
+    // data['utc_ts_updated'] = this.utcUpdated;
     return data;
   }
 

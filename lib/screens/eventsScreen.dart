@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'eventDetailScreen.dart';
 import '../models/event.dart';
 import '../models/appmodel.dart';
+import 'webViewScreen.dart';
 
 class EventsScreen extends StatefulWidget {
   @override
@@ -63,7 +63,8 @@ class EventsScreenState extends State {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => EventDetailScreen(
+                      builder: (context) => WebviewScreen(
+                            // builder: (context) => EventDetailScreen(
                             event: events[index],
                           )),
                 );
