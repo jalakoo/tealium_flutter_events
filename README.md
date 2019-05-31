@@ -53,6 +53,9 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
+### Getting Signing Certificate Options
+https://stackoverflow.com/questions/51845559/generate-sha-1-for-flutter-app
+
 ### Bottom Overflowed by X Pixels Message
 Set Scaffold's property `resizeToAvoidBottomInset` to `false` (which will allow the keyboard to display over element, say a textfield) OR adjust the scaffold layout.
 
