@@ -12,10 +12,10 @@ class ItemsManager<T> {
 
   Future<List<T>> getData() async {
     // TODO: Cache timeout
-    if (_items != null) {
-      log.verbose("itemsManager: getData: returning cached items");
-      return futureItems(_items);
-    }
+    // if (_items != null) {
+    //   log.verbose("itemsManager: getData: returning cached items");
+    //   return futureItems(_items);
+    // }
 
     log.verbose("itemsManager: getData: getting new items");
     switch (mode) {
@@ -25,21 +25,29 @@ class ItemsManager<T> {
         return futureItems([]);
         break;
       case SourceDataMode.random:
-        log.verbose("itemsManager: getData: attempting to get random data");
+        log.verbose("itemsManager: getData: attempting to get random data...");
         return getRandomly().then((items) {
           _items = items;
           return futureItems(items);
         });
         break;
       case SourceDataMode.dev:
+        log.verbose("itemsManager: getData: attempting to get dev data...");
         return getFromDev().then((items) {
+          log.verbose("itemsManager: getData: items received: ${items}");
           _items = items;
           return futureItems(items);
         });
         break;
       case SourceDataMode.prod:
         // TODO:
-        return futureItems([]);
+        // return futureItems([]);
+        log.verbose("itemsManager: getData: attempting to get prod data...");
+        return getFromProd().then((items) {
+          log.verbose("itemsManager: getData: items received: ${items}");
+          _items = items;
+          return futureItems(items);
+        });
         break;
       default:
     }

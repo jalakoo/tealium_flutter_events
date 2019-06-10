@@ -18,6 +18,7 @@ class Contact {
   PhoneNumbers phoneNumbers;
   String notes;
   int utcTsUpdated;
+  String imageUrl;
 
   Contact(
       {this.id,
@@ -27,7 +28,8 @@ class Contact {
       this.company,
       this.phoneNumbers,
       this.notes,
-      this.utcTsUpdated});
+      this.utcTsUpdated,
+      this.imageUrl});
 
   Contact.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,6 +42,7 @@ class Contact {
         : null;
     notes = json['notes'];
     utcTsUpdated = json['utc_ts_updated'];
+    imageUrl = json['image_url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +57,7 @@ class Contact {
     }
     data['notes'] = this.notes;
     data['utc_ts_updated'] = this.utcTsUpdated;
+    data['image_url'] = this.imageUrl;
     return data;
   }
 }

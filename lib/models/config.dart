@@ -19,7 +19,7 @@ class Config {
     contactsMode = sourceDataModeFrom(contactsModeString);
 
     String httpModeString = json["http_mode"];
-    httpMode = sourceDataModeFrom(contactsModeString);
+    httpMode = sourceDataModeFrom(httpModeString);
   }
 
   Map<String, dynamic> toJson() {

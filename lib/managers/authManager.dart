@@ -4,13 +4,22 @@ import 'sourceDataMode.dart';
 import 'package:faker/faker.dart';
 import '../models/user.dart';
 import '../utils/logger.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 const String LOCAL_USERS = '...';
 
 class AuthManager {
   SourceDataMode mode = SourceDataMode.prod;
+  var currentUser = null;
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
 
-// Returns a user with a token or error if auth failed
+  // Returns a user with a token or error if auth failed
+  // This function is basically a router depending on the current mode
   Future<User> getUser(String email, String password) async {
     log.verbose("authManager: getUser.");
     if (mode == SourceDataMode.dev) {
@@ -60,10 +69,45 @@ class AuthManager {
   }
 
   Future<User> _getUserFromDev(String email, String password) async {
-    throw UnimplementedError();
+    try {
+      final googleAccount = await _googleSignIn.signIn();
+      // Returns something like displayName: John Doe, email: john.doe@tealium.com, id: 102848407539020085946, photoUrl: https://lh6.googleusercontent.com/-uqtXGsj6z9A/AAABAAAAAAI/AAAABAAAAD4/7FXBf4yJ7mc/s1357/photo.jpg}
+      // Convert GoogleSignInAccount to user
+      log.verbose('authManager.dart: _getUserFromDev: google account');
+      log.verbose(googleAccount.toString());
+      final names = googleAccount.displayName.split(' ');
+      User result = User();
+      result.firstName = names[0];
+      result.lastName = names[1];
+      result.email = googleAccount.email;
+      result.imageUrl = googleAccount.photoUrl;
+      return result;
+    } catch (error) {
+      log.error(error);
+    }
   }
 
   Future<User> _getUserFromProd(String email, String password) async {
-    throw UnimplementedError();
+    // throw UnimplementedError();
+    try {
+      final googleAccount = await _googleSignIn.signIn();
+      // Returns something like displayName: John Doe, email: john.doe@tealium.com, id: 102848407539020085946, photoUrl: https://lh6.googleusercontent.com/-uqtXGsj6z9A/AAABAAAAAAI/AAAABAAAAD4/7FXBf4yJ7mc/s1357/photo.jpg}
+      // Convert GoogleSignInAccount to user
+      log.verbose('authManager.dart: _getUserFromProd: google account');
+      log.verbose(googleAccount.toString());
+      final names = googleAccount.displayName.split(' ');
+      User result = User();
+      result.firstName = names[0];
+      result.lastName = names[1];
+      result.email = googleAccount.email;
+      result.imageUrl = googleAccount.photoUrl;
+      return result;
+    } catch (error) {
+      log.error(error);
+    }
+  }
+
+  Future<void> signOut() async {
+    _googleSignIn.disconnect();
   }
 }

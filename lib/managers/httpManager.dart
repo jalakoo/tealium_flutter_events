@@ -7,7 +7,7 @@ import '../utils/logger.dart';
 const String FILE_URL = "";
 const String DEV_URL =
     "https://1eb197c8-f872-4f6e-8f00-ae0998e67efd.mock.pstmn.io";
-const String PROD_URL = "";
+const String PROD_URL = "https://tealium-marketing.herokuapp.com";
 const String GRAPHQL_URL = "http://localhost:3333";
 
 class HttpManager {

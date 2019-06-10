@@ -92,7 +92,6 @@ class AppModel extends Model {
           "appModel: updateManagersTo: httpManager to mode: ${stringFromSourceDataMode(config.httpMode)}");
       httpManager.mode = config.httpMode;
     }
-
   }
 
   void loadUser() async {
@@ -152,6 +151,7 @@ class AppModel extends Model {
     hasLoaded = false;
     user = null;
     fileManager.delete(userFilename);
+    authManager.signOut();
     notifyListeners();
   }
 }

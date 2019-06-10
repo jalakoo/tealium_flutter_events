@@ -30,7 +30,7 @@ class EventsManager extends ItemsManager<Event> {
   @override
   Future<List<Event>> getRandomly() async {
     // Using faker library to populate content
-    log.verbose("eventsManager; getRandomly");
+    log.verbose("eventsManager: getRandomly");
 
     int numberOf = Faker().randomGenerator.integer(10, min: 3);
     List<Event> result = List<Event>();
@@ -46,19 +46,22 @@ class EventsManager extends ItemsManager<Event> {
   // Using graphql endpoint
   @override
   Future<List<Event>> getFromDev() async {
+    log.verbose("eventsManager: getFromDev.");
     String url = httpManager().baseUrlFor(mode);
     url += "/graphql";
     var data = {"query": "{Event{name, pardot_url}}"};
+    log.verbose("eventsManager.js: getFromDev: url: ${url}");
     try {
       String responseBody = await httpManager().post(url, {}, data);
+      log.verbose("eventsManager.js: getFromDev: response: ${responseBody}");
       Map m = json.decode(responseBody);
       List l = m["data"]["Event"];
-      log.verbose("eventsManager.js: getFromDev: response: ${responseBody}");
       log.verbose("eventsManager.js: getFromDev: map: ${m}");
       log.verbose("eventsManager.js: getFromDev: list: ${l}");
       List<Event> result = List<Event>.from(l.map((i) => Event.fromJson(i)));
       return result;
     } catch (e) {
+      log.error(e);
       return [];
     }
   }
@@ -73,4 +76,25 @@ class EventsManager extends ItemsManager<Event> {
   //   List<Event> result = List<Event>.from(l.map((i) => Event.fromJson(i)));
   //   return result;
   // }
+
+  @override
+  Future<List<Event>> getFromProd() async {
+    log.verbose("eventsManager: getFromProd.");
+    String url = httpManager().baseUrlFor(mode);
+    url += "/graphql";
+    var data = {"query": "{Event{name, pardot_url}}"};
+    try {
+      String responseBody = await httpManager().post(url, {}, data);
+      Map m = json.decode(responseBody);
+      List l = m["data"]["Event"];
+      log.verbose("eventsManager.js: getFromProd: response: ${responseBody}");
+      log.verbose("eventsManager.js: getFromProd: map: ${m}");
+      log.verbose("eventsManager.js: getFromProd: list: ${l}");
+      List<Event> result = List<Event>.from(l.map((i) => Event.fromJson(i)));
+      return result;
+    } catch (e) {
+      log.error(e);
+      return [];
+    }
+  }
 }

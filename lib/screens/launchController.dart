@@ -29,6 +29,7 @@ class LaunchControllerState extends State<LaunchController> {
   }
 
   Widget _pageToDisplay() {
+    // ScopedModelDescendant is a listner that is called by notifyListeners() from the model
     return ScopedModelDescendant<AppModel>(builder: (context, child, model) {
       if (model.isLoading) {
         log.verbose("launchController: _pageToDisplay: appModel is loading...");

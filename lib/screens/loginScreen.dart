@@ -18,20 +18,22 @@ class LoginScreen extends StatelessWidget {
           padding: LoginPadding(context),
           child: Center(
               child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               ImageContainer("assets/tealium_logo_120x200.png"),
               Padding(padding: EdgeInsets.all(20.0)),
-              RoundedTextField("Email", emailController),
+              // RoundedTextField("Email", emailController),
+              // Padding(
+              //   padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+              //   child: RoundedPasswordField("Password", passwordController),
+              // ),
               Padding(
-                padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
-                child: RoundedPasswordField("Password", passwordController),
-              ),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
+                  padding: EdgeInsets.fromLTRB(0, 40, 0, 5),
                   child: ScopedModelDescendant<AppModel>(
                       builder: (context, child, model) {
                     return RoundedButton(
-                        "Login",
+                        "Google SSO",
                         context,
                         () => model.login(
                             emailController.text, passwordController.text));
